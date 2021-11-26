@@ -1,19 +1,11 @@
-GET http://127.0.0.1:8000/hello/2021
-
-
-
-
-
-
-
 ###
 POST http://127.0.0.1:8082/users/
 Content-Type: application/json
 
 {
-    "name": "Mario Ix",
-    "email": "mhadaniya1ix@email.com",
-    "password": "12345"
+    "name": "Carine Casagrande",
+    "email": "carine.casagrande@hotmail.com",
+    "password": "123456"
 }
 
 
