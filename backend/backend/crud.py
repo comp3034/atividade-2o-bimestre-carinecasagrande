@@ -53,3 +53,6 @@ def edit_user(db: Session, id: int, new_value: schemas.UserEdit):
     db.commit()
     db.refresh(db_user)
     return db_user
+
+def get_user_measure(db: Session, user_id: int):
+    return db.query(models.Measure).filter(models.Measure.user_id == user_id).all()
