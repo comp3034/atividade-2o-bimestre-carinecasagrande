@@ -8,24 +8,18 @@ Content-Type: application/json
     "password": "123456"
 }
 
-
-
-
-
-
-
-
 ###
 GET http://127.0.0.1:8082/users/
 
-
-
-
-
-
-
 ###
 GET http://127.0.0.1:8082/users/1
+
+
+
+
+
+
+
 
 
 ###
@@ -33,7 +27,9 @@ PUT http://127.0.0.1:8082/users/1
 Content-Type: application/json
 
 {
-    
+    "name": "Carine Casa Grande",
+    "email": "carinecasagrandee@edu.unifil.br",
+    "birth_date": "2000-09-23T00:00:00.000Z"
 }
 
 
