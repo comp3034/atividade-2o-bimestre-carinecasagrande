@@ -31,3 +31,22 @@ def create_user_measure(db: Session, measure: schemas.MeasureCreate, user_id: in
     db.commit()
     db.refresh(db_measure)
     return db_measure
+
+def edit_user(db: Session, id: int, new_value: schemas.UserEdit):
+    db_user = db.query(models.User).filter(models.User.id == id).first()
+    if db_user: 
+        if new_value.name != None: 
+            db.query(models.User).filter(models.User.id == id).\
+                update({"name": new_value.name})
+
+        if new_value.email != None:
+            db.query(models.User).filter(models.User.id == id).\
+                update({"email": new_value.email})
+
+        if new_value.birth_date != None:
+            db.query(models.User).filter(models.User.id == id).\
+                update({"birth_date": new_value.birth_date})
+
+    db.commit()
+    db.refresh(db_user)
+    return db_user

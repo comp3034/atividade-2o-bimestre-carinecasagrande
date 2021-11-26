@@ -34,10 +34,18 @@ def read_users(skip: int = 0, limit: int = 100, db: Session = Depends(get_db)):
 
 # Busca um determinado usuário
 @app.get("/users/{id}", response_model=schemas.User)
-def get_user(id: int, db: Session = Depends(get_db)):
-    return crud.get_user(db, id)
+def read_user(id: int, db: Session = Depends(get_db)):
+    user = crud.get_user(db, id)
+    if user:
+        return user
+    
+    raise HTTPException(status_code=400, detail="Usuário não encontrado")
 
 # Alteração de usuário
-@app.put("/users/{user_id}", response_model=schemas.User)
+@app.patch("/users/{id}", response_model=schemas.User)
 async def edit_user(id: int, new_value: schemas.UserEdit, db: Session = Depends(get_db)):
-    crud.edit_user(db, id, new_value=new_value)
+    db_user = crud.get_user(db, id)
+    if db_user:
+        return crud.edit_user(db, id, new_value=new_value)
+    
+    raise HTTPException(status_code=400, detail="Usuário inexistente")
