@@ -60,6 +60,8 @@ POST http://127.0.0.1:8082/users/2/measures/
     "calf": "70"
 }
 
+###
+GET http://127.0.0.1:8082/measures/
 
 
 

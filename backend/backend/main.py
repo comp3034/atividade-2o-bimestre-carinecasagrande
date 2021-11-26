@@ -58,3 +58,9 @@ def create_measure(id: int, measure: schemas.MeasureCreate, db: Session = Depend
         return crud.create_user_measure(db, measure, id)
 
     raise HTTPException(status_code=400, detail="Usuário não encontrado")
+
+# Busca todas as medidas
+@app.get("/measures/", response_model=List[schemas.Measure])
+def read_measures(skip: int = 0, limit: int = 100, db: Session = Depends(get_db)):
+    measures = crud.get_measures(db, skip=skip, limit=limit)
+    return measures
