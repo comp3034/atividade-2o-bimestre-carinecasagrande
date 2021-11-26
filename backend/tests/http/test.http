@@ -9,6 +9,16 @@ Content-Type: application/json
 }
 
 ###
+POST http://127.0.0.1:8082/users/
+Content-Type: application/json
+
+{
+    "name": "Jeferson Shimoda",
+    "email": "jefshimoda@edu.unifil.br",
+    "password": "123456"
+}
+
+###
 GET http://127.0.0.1:8082/users/
 
 ###
@@ -24,26 +34,30 @@ Content-Type: application/json
     "birth_date": "2000-05-15T00:00:00.000Z"
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
+###
+POST http://127.0.0.1:8082/users/1/measures/
+{
+    "height": "159",
+    "weight": "65",
+    "neck": "60",
+    "chest": "100",
+    "biceps": "40",
+    "waist": "70",
+    "thighs": "60",
+    "calf": "30"
+}
 
 ###
-POST http://127.0.0.1:8000/users
-Content-Type: application/json
-
+POST http://127.0.0.1:8082/users/2/measures/
 {
-    "name": "Ricardo Silva",
-    "email": "ricardo.silva@email.com"
+    "height": "179",
+    "weight": "80",
+    "neck": "70",
+    "chest": "70",
+    "biceps": "70",
+    "waist": "70",
+    "thighs": "70",
+    "calf": "70"
 }
 
 
@@ -53,14 +67,3 @@ Content-Type: application/json
 
 
 
-###
-PUT http://127.0.0.1:8000/users/8
-Content-Type: application/json
-
-{
-    "name": "Nome",
-    "price": 1
-}
-
-### 
-DELETE http://127.0.0.1:8000/users/8

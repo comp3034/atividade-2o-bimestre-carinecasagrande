@@ -48,4 +48,13 @@ async def edit_user(id: int, new_value: schemas.UserEdit, db: Session = Depends(
     if db_user:
         return crud.edit_user(db, id, new_value=new_value)
     
-    raise HTTPException(status_code=400, detail="Usuário inexistente")
+    raise HTTPException(status_code=400, detail="Usuário não encontrado")
+
+# Insere as medidas
+@app.post("/users/{id}/measures/", response_model=schemas.Measure)
+def create_measure(id: int, measure: schemas.MeasureCreate, db: Session = Depends(get_db)):
+    db_user = crud.get_user(db, id)
+    if db_user:
+        return crud.create_user_measure(db, measure, id)
+
+    raise HTTPException(status_code=400, detail="Usuário não encontrado")

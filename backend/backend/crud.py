@@ -25,8 +25,11 @@ def create_user(db: Session, user: schemas.UserCreate):
 def get_measures(db: Session, skip: int = 0, limit: int = 100):
     return db.query(models.Measure).offset(skip).limit(limit).all()
 
-def create_user_measure(db: Session, measure: schemas.MeasureCreate, user_id: int):
-    db_measure = models.Measure(**measure.dict(), owner_id=user_id)
+def create_user_measure(db: Session, measure: schemas.MeasureCreate, id: int):
+    db_measure = models.Measure(
+        **measure.dict(), 
+        user_id=id
+    )
     db.add(db_measure)
     db.commit()
     db.refresh(db_measure)
