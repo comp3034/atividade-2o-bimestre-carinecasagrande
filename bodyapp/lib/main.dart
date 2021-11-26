@@ -1,10 +1,5 @@
-import 'package:bodyapp/objetivos/objetivos.dart';
 import 'package:bodyapp/shared/colors.dart';
 import 'package:flutter/material.dart';
-import 'package:pixel_perfect/pixel_perfect.dart';
-
-import 'dieta/dieta.dart';
-import 'login/login.dart';
 import 'medidas/medidas.dart';
 // import 'home/home.dart';
 

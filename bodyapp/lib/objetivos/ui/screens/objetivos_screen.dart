@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:bodyapp/dieta/dieta.dart';
 import 'package:bodyapp/objetivos/ui/screens/screens.dart';
 import 'package:bodyapp/shared/widgets/widgets.dart';
@@ -196,9 +194,6 @@ class PersonalizadoViewWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double height = MediaQuery.of(context).size.height;
-    double width = MediaQuery.of(context).size.width;
-
     return DirectSelectContainer(
       child: SingleChildScrollView(
         child: Padding(

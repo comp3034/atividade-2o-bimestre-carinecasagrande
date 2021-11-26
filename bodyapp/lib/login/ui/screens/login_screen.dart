@@ -165,6 +165,7 @@ class _LoginFormWidgetState extends State<LoginFormWidget> {
   }
 }
 
+// ignore: must_be_immutable
 class InputWidget extends StatelessWidget {
   String? hintText;
   IconData? prefixIcon;

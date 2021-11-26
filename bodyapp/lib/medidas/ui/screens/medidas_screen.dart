@@ -1,5 +1,8 @@
 import 'package:dotted_line/dotted_line.dart';
 import 'package:flutter/material.dart';
+import 'dart:math' as math;
+import 'dart:ui' as ui;
+import 'package:intl/intl.dart';
 
 class MedidasScreen extends StatelessWidget {
   const MedidasScreen({Key? key}) : super(key: key);
@@ -8,6 +11,7 @@ class MedidasScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     var height = MediaQuery.of(context).size.height;
     var width = MediaQuery.of(context).size.width;
+    DateFormat dateFormat = DateFormat("dd/MM/yyyy");
     return Scaffold(
       appBar: AppBar(
         title: Text('Medidas'),
@@ -25,9 +29,10 @@ class MedidasScreen extends StatelessWidget {
               ),
             ),
             Positioned(
-              bottom: 8,
-              left: width * .3,
-              child: Text('atualizado em ${DateTime.now()}'),
+              bottom: 25,
+              right: width * .1,
+              child: Text(
+                  'Última atualização em ${dateFormat.format(DateTime.now())}'),
             ),
             Positioned(
               right: 48,
@@ -49,20 +54,97 @@ class MedidasScreen extends StatelessWidget {
               ),
             ),
             NestedMeasureWidget(
-              top: 188,
+              top: 178,
               left: 0,
               width: width * .5,
               label: 'Pescoço',
               value: '95',
-              measure: ' cm',
+              measure: '',
             ),
             NestedMeasureWidget(
-              top: 188 + 48,
+              top: 250,
               left: 0,
-              width: width * .6,
+              width: width * .7,
               label: 'Peito',
               value: '95',
-              measure: ' cm',
+              measure: '',
+            ),
+            NestedMeasureWidget(
+              top: 300,
+              left: 66,
+              width: (width - 130) * .5,
+              label: 'Biceps',
+              value: '95',
+              measure: '',
+            ),
+            NestedMeasureWidget(
+              top: 360,
+              left: 0,
+              width: width * .7,
+              label: 'Cintura',
+              value: '95',
+              measure: '',
+            ),
+            NestedMeasureWidget(
+              top: 420,
+              left: 20,
+              width: (width - 40) * .5,
+              label: 'Quadril',
+              value: '95',
+              measure: '',
+            ),
+            NestedMeasureWidget(
+              top: 500,
+              left: 10,
+              width: (width - 20) * .7,
+              label: 'Coxa',
+              value: '95',
+              measure: '',
+            ),
+            NestedMeasureWidget(
+              top: 600,
+              left: 10,
+              width: (width - 120) * .7,
+              label: 'Panturrilha',
+              value: '95',
+              measure: '',
+            ),
+            Positioned(
+              right: 28,
+              top: 280,
+              child: Column(
+                children: [
+                  MeasureLabelWidget(
+                    label: 'Gordura',
+                    value: '170',
+                    measure: '',
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(top: 40),
+                    child: MeasureLabelWidget(
+                      label: 'IMC',
+                      value: '22',
+                      measure: '',
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Positioned(
+              right: 28,
+              top: 280,
+              child: CustomPaint(
+                size: Size(80, 80),
+                painter: Arc(),
+              ),
+            ),
+            Positioned(
+              right: 28,
+              top: 380,
+              child: CustomPaint(
+                size: Size(80, 80),
+                painter: Arc(),
+              ),
             ),
           ],
         ),
@@ -72,6 +154,40 @@ class MedidasScreen extends StatelessWidget {
         child: Icon(Icons.add),
       ),
     );
+  }
+}
+
+class Arc extends CustomPainter {
+  @override
+  void paint(Canvas canvas, Size size) {
+    final rect = Rect.fromLTRB(0, -20, 90, 80);
+    final startAngle = -math.pi;
+    final sweepAngle = math.pi;
+    final useCenter = false;
+    final paint = Paint()
+      ..color = Colors.black
+      ..style = PaintingStyle.stroke
+      ..strokeWidth = 6
+      ..shader = ui.Gradient.linear(
+        Offset(0, 0),
+        Offset(80, 80),
+        [
+          Colors.blue,
+          Colors.green,
+          Colors.red,
+        ],
+        [
+          0.0,
+          0.3,
+          0.6,
+        ],
+      );
+    canvas.drawArc(rect, startAngle, sweepAngle, useCenter, paint);
+  }
+
+  @override
+  bool shouldRepaint(CustomPainter old) {
+    return false;
   }
 }
 
@@ -147,6 +263,7 @@ class MeasureLabelWidget extends StatelessWidget {
             text: '$value',
             style: TextStyle(
               fontSize: 36,
+              color: Colors.black,
             ),
             children: [
               TextSpan(
